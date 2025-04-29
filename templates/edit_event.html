@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Event</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="type">Event Type</label>
+            <input type="text" class="form-control" id="type" name="type" value="{{ event.type }}" required>
+        </div>
+        <div class="form-group">
+            <label for="capacity">Capacity</label>
+            <input type="number" class="form-control" id="capacity" name="capacity" value="{{ event.capacity }}" required>
+        </div>
+        <div class="form-group">
+            <label for="cost">Cost</label>
+            <input type="number" step="0.01" class="form-control" id="cost" name="cost" value="{{ event.cost }}" required>
+        </div>
+        <div class="form-group">
+            <label for="street">Street</label>
+            <input type="text" class="form-control" id="street" name="street" value="{{ event.street }}" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" name="city" value="{{ event.city }}" required>
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" name="state" value="{{ event.state }}" required>
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip Code</label>
+            <input type="text" class="form-control" id="zip" name="zip" value="{{ event.zip }}" required>
+        </div>
+        <div class="form-group">
+            <label for="start_time">Start Time</label>
+            <input type="datetime-local" class="form-control" id="start_time" name="start_time" value="{{ event.start_time.strftime('%Y-%m-%dT%H:%M') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="end_time">End Time</label>
+            <input type="datetime-local" class="form-control" id="end_time" name="end_time" value="{{ event.end_time.strftime('%Y-%m-%dT%H:%M') }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Event</button>
+    </form>
+</div>
+{% endblock %}
