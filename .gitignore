@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+# removing test_event_booking
+test_event_booking
 # Distribution / packaging
 .Python
 build/

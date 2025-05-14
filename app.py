@@ -46,6 +46,10 @@ def login():
 def register():
     if request.method=='POST':
         email=request.form.get('email')
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('Email already registered. Please use a different email.', category='error')
+            return render_template('register.html')
         name=request.form.get('name')
         password= generate_password_hash(request.form.get('password'))
         street= request.form.get('street')
@@ -60,7 +64,7 @@ def register():
         flash('Account created Sucessfully! Please log in',category='success')
         return redirect(url_for('login'))
     return render_template('register.html')
-
+            
 @app.route('/user_home')
 @login_required
 def user_home():
