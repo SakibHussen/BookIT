@@ -16,9 +16,10 @@ class User(db.Model):
     bookings = db.relationship('Booking', backref='user', lazy=True) # create one to many relationship, where a user can have a multiple relationships
 
     # Flask-Login required attributes
+    #the following functions check whether a user is active or not, the user is anonymous, also get the id to display for later task
     @property
     def is_active(self):
-        return True
+        return True 
 
     @property
     def is_authenticated(self):
@@ -36,7 +37,7 @@ class Event(db.Model):
     eventid = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type = db.Column(db.String(50), nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
-    remaining_tickets = db.Column(db.Integer, nullable=False)  # New field for remaining tickets
+    remaining_tickets = db.Column(db.Integer, nullable=False)  # field for remaining tickets
     cost = db.Column(db.Numeric(10, 2), nullable=False)
     street = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(100), nullable=False)
@@ -44,7 +45,7 @@ class Event(db.Model):
     zip = db.Column(db.String(20), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
-    bookings = db.relationship('Booking', backref='event', lazy=True, cascade='all, delete-orphan')
+    bookings = db.relationship('Booking', backref='event', lazy=True, cascade='all, delete-orphan')# One to many: One Event has many bookings
 
     __table_args__ = (
         db.CheckConstraint("type IN ('conference', 'concert', 'seminar', 'workshop')", name='check_type'),
